@@ -24,7 +24,7 @@ public class WebSocketController {
         String username = request.getParameter("username");
         System.out.println(username + "登录");
         HttpSession session = request.getSession(false);
-        session.setAttribute(SessionConstant.USER_NAME_SESSION, username);
+        session.setAttribute(SessionConstant.USER_SESSION, username);
         //response.sendRedirect("/quicksand/jsp/websocket.jsp");
         return new ModelAndView("wb");
     }
