@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css}" rel="stylesheet">
+</head>
+<body>
+<form th:action="@{/user/login}" method="post">
+    <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <label th:text="#{login.username}">UserName</label>
+    <input type="text" name="userName" th:placeholder="#{login.username}" placeholder="UserName" required="" autofocus=""/>
+    <label th:text="#{login.password}">Password</label>
+    <input type="password" name="password"  th:placeholder="#{login.password}" placeholder="Password" required=""/>
+    <div>
+        <label>
+            <input type="checkbox" value="remember-me">[[#login.remember]]
+        </label>
+    </div>
+    <button type="submit" th:text="#{login.btn}">login</button>
+    <p>2018-2019</p>
+    <a th:href="@{/login.html(local='zh_CN')}">中文</a>
+    <a th:href="@{/login.html(local='en_US')}">English</a>
+</form>
+</body>
+</html>
