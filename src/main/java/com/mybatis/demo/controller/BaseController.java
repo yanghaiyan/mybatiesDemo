@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+/**
+ * @author as
+ */
 public abstract class BaseController {
 
     private final Logger logger = LoggerFactory.getLogger(BaseController.class);

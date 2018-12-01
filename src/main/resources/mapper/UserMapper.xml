@@ -10,6 +10,11 @@
         from user
         where id = #{value}
     </select>
+    <select id="findByUserName" parameterType="String" resultType="com.mybatis.demo.entity.User">
+        select *
+        from user
+        where username = #{value}
+    </select>
     <update id="update" parameterType="com.mybatis.demo.entity.User">
         update user
         <set>

@@ -8,15 +8,17 @@
     <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css}" rel="stylesheet">
 </head>
 <body>
-<form th:action="@{/user/login}" method="post">
+<form action="socket.html" th:action="@{/user/login}" method="post">
+    <h1 th:text="#{login.tip}">Please login in </h1>
     <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label th:text="#{login.username}">UserName</label>
     <input type="text" name="userName" th:placeholder="#{login.username}" placeholder="UserName" required="" autofocus=""/>
+    <br>
     <label th:text="#{login.password}">Password</label>
-    <input type="password" name="password"  th:placeholder="#{login.password}" placeholder="Password" required=""/>
+    <input type="password" name="password" th:placeholder="#{login.password}" placeholder="Password" required=""/>
     <div>
         <label>
-            <input type="checkbox" value="remember-me">[[#login.remember]]
+            <input type="checkbox" value="remember-me"/>[[#{login.remember}]]
         </label>
     </div>
     <button type="submit" th:text="#{login.btn}">login</button>
