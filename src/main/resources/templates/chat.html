@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css}" rel="stylesheet">
-    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <script messageType="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
     <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
 </head>
@@ -54,7 +54,7 @@
             //1代表上线 2代表下线 3代表在线名单 4代表普通消息
             if (obj.messageType == 1) {
                 //把名称放入到selection当中供选择
-                var onlineName = obj.userName;
+                var onlineName = obj.sendName;
                 var option = "<option>" + onlineName + "</option>";
                 $("#onLineUser").append(option);
                 setMessageInnerHTML(onlineName + "上线了");
@@ -62,7 +62,7 @@
             else if (obj.messageType == 2) {
                 $("#onLineUser").empty();
                 var onlineName = obj.onlineUsers;
-                var offlineName = obj.userName;
+                var offlineName = obj.sendName;
                 var option = "<option>" + "--所有--" + "</option>";
                 for (var i = 0; i < onlineName.length; i++) {
                     if (!(onlineName[i] == document.getElementById('userName').value)) {
@@ -85,7 +85,7 @@
                 console.log("获取了在线的名单" + onlineName.toString());
             }
             else {
-                setMessageInnerHTML(obj.fromuserName + "对" + obj.touserName + "说：" + obj.textMessage);
+                setMessageInnerHTML(obj.sendName + "对" + obj.receiverName + "说：" + obj.textMessage);
             }
         };
 
@@ -119,9 +119,9 @@
             setMessageInnerHTML(document.getElementById('userName').value + "对" + selectText + "说：" + $("#text").val());
         }
         var message = {
-            "message": document.getElementById('text').value,
-            "userName": document.getElementById('userName').value,
-            "to": selectText
+            "textMessage": document.getElementById('text').value,
+            "sendName": document.getElementById('userName').value,
+            "receiverName": selectText
         };
         webSocket.send(JSON.stringify(message));
         $("#text").val("");
