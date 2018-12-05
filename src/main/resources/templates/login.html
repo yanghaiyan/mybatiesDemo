@@ -8,7 +8,7 @@
     <link th:href="@{http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css}" rel="stylesheet">
 </head>
 <body>
-<form action="socket.html" th:action="@{/user/login}" method="post">
+<form action="chat.html" th:action="@{/user/login}" method="post">
     <h1 th:text="#{login.tip}">Please login in </h1>
     <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label th:text="#{login.username}">UserName</label>

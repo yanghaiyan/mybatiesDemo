@@ -18,8 +18,8 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(getWebSocketHandler(), "/wb/socketServer.do").setAllowedOrigins("*").addInterceptors(getInterceptor());
-        webSocketHandlerRegistry.addHandler(getWebSocketHandler(), "/wbjs/socketServer.do").setAllowedOrigins("*").addInterceptors(getInterceptor()).withSockJS();
+        webSocketHandlerRegistry.addHandler(getWebSocketHandler(), "/wb/chat/{name}").setAllowedOrigins("*").addInterceptors(getInterceptor());
+        webSocketHandlerRegistry.addHandler(getWebSocketHandler(), "/wbjs/chat/{name}").setAllowedOrigins("*").addInterceptors(getInterceptor()).withSockJS();
     }
 
     @Bean

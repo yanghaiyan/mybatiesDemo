@@ -1,5 +1,6 @@
 package com.mybatis.demo.interceptor;
 
+import com.mybatis.demo.constant.SessionConstant;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,13 +11,14 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     // 目标方法执行之前
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object user = request.getSession().getAttribute("loginUser");
+
+        Object user = request.getSession().getAttribute(SessionConstant.USER_SESSION);
         // 如果获取的request的session中的loginUser参数为空（未登录），就返回登录页，否则放行访问
         if (user == null) {
             // 未登录，给出错误信息，
-            request.setAttribute("msg","无权限请先登录");
+            request.setAttribute("msg", "无权限请先登录");
             // 获取request返回页面到登录页
-            request.getRequestDispatcher("/index.html").forward(request, response);
+            request.getRequestDispatcher("/login.html").forward(request, response);
             return false;
         } else {
             // 已登录，放行
