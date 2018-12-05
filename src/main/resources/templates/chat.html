@@ -85,7 +85,7 @@
                 console.log("获取了在线的名单" + onlineName.toString());
             }
             else {
-                setMessageInnerHTML(obj.sendName + "对" + obj.receiverName + "说：" + obj.textMessage);
+                setMessageInnerHTML("收到"+obj.sendName  +"的消息：" + obj.textMessage);
             }
         };
 
@@ -116,7 +116,7 @@
             selectText = "All";
         }
         else {
-            setMessageInnerHTML(document.getElementById('userName').value + "对" + selectText + "说：" + $("#text").val());
+            setMessageInnerHTML(  "发送给" + selectText + "：" + $("#text").val());
         }
         var message = {
             "textMessage": document.getElementById('text').value,

@@ -1,5 +1,6 @@
 package com.mybatis.demo.controller;
 
+import com.mybatis.demo.constant.SessionConstant;
 import com.mybatis.demo.entity.User;
 import com.mybatis.demo.utils.AppContext;
 import com.mybatis.demo.utils.PathUtil;
@@ -29,11 +30,7 @@ public abstract class BaseController {
     }
 
     public String getUserName() {
-        User user = getUser();
-        if (user != null) {
-            return user.getUserName();
-        }
-        return "";
+        return (String) getSession(SessionConstant.USER_SESSION);
     }
 
     public int getUserId() {
@@ -52,8 +49,8 @@ public abstract class BaseController {
         SessionUtil.addSession(key, object);
     }
 
-    protected void getSession(String key) {
-        SessionUtil.getSession(key);
+    protected Object getSession(String key) {
+        return SessionUtil.getSession(key);
     }
 
     protected void removeSession(String key) {

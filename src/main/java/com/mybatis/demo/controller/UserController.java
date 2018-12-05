@@ -4,6 +4,7 @@ import com.mybatis.demo.constant.SessionConstant;
 import com.mybatis.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,8 @@ public class UserController extends BaseController {
         this.userService = userService;
     }
 
+
+
     @PostMapping(value = "/user/login")
     // 对登录请求判断request的参数值，并存放在map中
     public ModelAndView login(@RequestParam("userName") String userName,
@@ -30,9 +33,9 @@ public class UserController extends BaseController {
         if (userService.isLogin(userName, password)) {
             // 登录成功，就跳转到下一个页面
             this.addSession(SessionConstant.USER_SESSION, userName);
-            RedirectView redirectView = new RedirectView("/chat.html");
+            RedirectView redirectView = new RedirectView("/chat");
             modelAndView.setView(redirectView);
-            modelAndView.addObject("userName", userName);
+          //  modelAndView.setViewName("/chat");
             request.getSession().setAttribute(SessionConstant.USER_SESSION,userName);
         } else {
             // 登录失败，刷新本登录页

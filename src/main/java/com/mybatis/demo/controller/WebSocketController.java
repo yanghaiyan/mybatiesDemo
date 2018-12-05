@@ -1,25 +1,22 @@
 package com.mybatis.demo.controller;
 
-import com.mybatis.demo.service.WebSocketService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.socket.TextMessage;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class WebSocketController {
+public class WebSocketController extends BaseController {
 
-    @Autowired
-    public WebSocketService webSocketService;
-
-    @RequestMapping("/wb/send")
-    @ResponseBody
-    public String send(HttpServletRequest request) {
-        String username = request.getParameter("username");
-        webSocketService.sendMessageToUser(username, new TextMessage("你好，测试！！！！"));
-        return null;
+    @RequestMapping("/chat")
+    public ModelAndView webSocket() {
+        ModelAndView modelAndView = new ModelAndView();
+        String userName = this.getUserName();
+        try {
+            modelAndView.addObject("userName", userName);
+            modelAndView.setViewName("chat");
+        } catch (Exception e) {
+            modelAndView.setViewName("error");
+        }
+        return modelAndView;
     }
 }
