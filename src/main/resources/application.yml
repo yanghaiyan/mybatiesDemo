@@ -1,0 +1,11 @@
+spring:
+     profiles:
+           active: dev
+     messages:
+             basename: i18n.login
+     thymeleaf:
+            cache: false
+            encoding: UTF-8
+mybatis:
+       mapper-locations: classpath:mapper/*.xml
+
