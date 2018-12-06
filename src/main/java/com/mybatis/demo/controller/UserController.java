@@ -27,16 +27,13 @@ public class UserController extends BaseController {
     @PostMapping(value = "/user/login")
     // 对登录请求判断request的参数值，并存放在map中
     public ModelAndView login(@RequestParam("userName") String userName,
-                              @RequestParam("password") String password,
-                              HttpServletRequest request) {
+                              @RequestParam("password") String password) {
         ModelAndView modelAndView = new ModelAndView();
         if (userService.isLogin(userName, password)) {
             // 登录成功，就跳转到下一个页面
             this.addSession(SessionConstant.USER_SESSION, userName);
             RedirectView redirectView = new RedirectView("/chat");
             modelAndView.setView(redirectView);
-          //  modelAndView.setViewName("/chat");
-            request.getSession().setAttribute(SessionConstant.USER_SESSION,userName);
         } else {
             // 登录失败，刷新本登录页
             modelAndView.addObject("msg", "用户名密码错误");

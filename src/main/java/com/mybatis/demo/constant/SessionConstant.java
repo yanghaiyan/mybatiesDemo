@@ -8,7 +8,6 @@ public class SessionConstant {
     public static final String APP_CONTEXT_SESSION = "APP_CONTEXT_SESSION";
     public static final String APP_CONTEXT_USER = "APP_CONTEXT_USER";
     public static final String APP_URL_PREFIX = "page";
-    public static final String MESSAGE_TYPE = "messageType";
-    public static final String ONLINE_USERS = "onlineUsers";
 
+    public static final String SEND_ALL = "ALL";
 }

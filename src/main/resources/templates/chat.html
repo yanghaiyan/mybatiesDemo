@@ -32,7 +32,7 @@
 </body>
 
 
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     var webSocket;
     var commWebSocket;
     if ("WebSocket" in window) {
@@ -113,7 +113,7 @@
     function send() {
         var selectText = $("#onLineUser").find("option:selected").text();
         if (selectText == "--所有--") {
-            selectText = "All";
+            selectText = [[${T(com.mybatis.demo.constant.SessionConstant).SEND_ALL}]]
         }
         else {
             setMessageInnerHTML(  "发送给" + selectText + "：" + $("#text").val());

@@ -1,6 +1,7 @@
 package com.mybatis.demo.interceptor;
 
 import com.mybatis.demo.constant.SessionConstant;
+import com.mybatis.demo.utils.SessionUtil;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -18,20 +19,11 @@ import java.util.Map;
 public class WebSocketHandshakeInterceptor implements HandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Map<String, Object> attributesMap) throws Exception {
-        if (serverHttpRequest instanceof ServletServerHttpRequest) {
-
-            ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) serverHttpRequest;
-            HttpSession session = servletRequest.getServletRequest().getSession(false);
-            if (session != null) {
-                //使用userName区分WebSocketHandler，以便定向发送消息
-
-                String userName = (String) session.getAttribute(SessionConstant.USER_SESSION);
-                if (userName == null) {
-                    userName = SessionConstant.DEFAULT_USER_NAME_SESSION;
-                }
-                attributesMap.put(SessionConstant.WEBSOCKET_USERNAME_KEY, userName);
-            }
+        String userName = (String) SessionUtil.getSession(SessionConstant.USER_SESSION);
+        if (userName == null) {
+            userName = SessionConstant.DEFAULT_USER_NAME_SESSION;
         }
+        attributesMap.put(SessionConstant.WEBSOCKET_USERNAME_KEY, userName);
         return true;
     }
 

@@ -12,7 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- * @author as
+ * 基础控制类
+ * @author YHY
  */
 public abstract class BaseController {
 

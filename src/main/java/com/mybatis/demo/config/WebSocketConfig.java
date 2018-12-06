@@ -11,7 +11,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 /**
- * @author as
+ * @author yhy
  */
 @Configuration
 @EnableWebSocket

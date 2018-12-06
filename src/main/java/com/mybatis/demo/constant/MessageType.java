@@ -3,6 +3,10 @@ package com.mybatis.demo.constant;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  消息类型
+ * @author YHY
+ */
 public enum MessageType {
     ONLINE(1, "onLine"),
     OFFLINE(2, "offLine"),
